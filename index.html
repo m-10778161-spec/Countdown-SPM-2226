@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown - Glorious Generation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2b0404, #4a0e17, #800020);
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background-color: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        /* Gaya untuk Gambar Logo Batch */
+        .badge-logo {
+            height: 3em; /* Pelarasan saiz tinggi logo mengikut teks */
+            width: auto;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        p.date-info {
+            font-size: 1.5rem;
+            color: #e0d0d0;
+            margin-top: 0.5rem;
+        }
+
+        .countdown-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            min-width: 160px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .number {
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .label {
+            font-size: 1.1rem;
+            color: #ffd700;
+            text-transform: uppercase;
+            margin-top: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <!-- BAHAGIAN LOGO & NAMA BATCH -->
+        <div class="badge">
+            <img src="logo.png" alt="Logo Batch" class="badge-logo">
+            Glorious Generation
+        </div>
+        
+        <h1>COUNTDOWN ACARA</h1>
+        <p class="date-info">Isnin, 23 November 2026 | 8:00 Pagi (MYT)</p>
+    </div>
+
+    <div class="countdown-container">
+        <div class="time-box">
+            <div class="number" id="days">00</div>
+            <div class="label">Hari</div>
+        </div>
+        <div class="time-box">
+            <div class="number" id="hours">00</div>
+            <div class="label">Jam</div>
+        </div>
+        <div class="time-box">
+            <div class="number" id="minutes">00</div>
+            <div class="label">Minit</div>
+        </div>
+        <div class="time-box">
+            <div class="number" id="seconds">00</div>
+            <div class="label">Saat</div>
+        </div>
+    </div>
+
+    <div class="footer">Tekan F11 untuk Skrin Penuh</div>
+
+    <script>
+        // Tarikh Sasaran: 23 November 2026, 8:00 AM (Waktu Malaysia)
+        const targetDate = new Date("November 23, 2026 08:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.querySelector(".countdown-container").innerHTML = "<h1 style='color: #ffd700;'>HARI KEJADIAN TELAH TIBA!</h1>";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>

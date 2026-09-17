@@ -85,7 +85,7 @@
             */
 
             filter:
-                blur(5px);
+                blur(4px);
 
             /*
                 Elak bahagian tepi putih
@@ -160,28 +160,28 @@
                         35,
                         3,
                         8,
-                        0.90
+                        0.84
                     ),
 
                     rgba(
                         85,
                         4,
                         22,
-                        0.84
+                        0.78
                     ),
 
                     rgba(
                         145,
                         0,
                         42,
-                        0.76
+                        0.70
                     ),
 
                     rgba(
                         65,
                         3,
                         15,
-                        0.90
+                        0.84
                     )
                 );
 
@@ -1111,7 +1111,7 @@
         const targetDate =
 
             new Date(
-                "November 23, 2026 08:00:00"
+                "November 25, 2026 08:00:00"
             ).getTime();
 
 
@@ -1304,6 +1304,9 @@
         ===================================== */
 
         updateCountdown();
+        setInterval(function() {
+        location.reload();
+    }, 60 * 60 * 1000);
 
 
     </script>

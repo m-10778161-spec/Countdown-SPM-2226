@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ms">
 
@@ -22,10 +23,8 @@
         ========================================= */
 
         * {
-
             margin: 0;
             padding: 0;
-
             box-sizing: border-box;
 
             font-family:
@@ -34,7 +33,6 @@
                 Geneva,
                 Verdana,
                 sans-serif;
-
         }
 
 
@@ -54,7 +52,6 @@
             position: relative;
 
             background: #35030d;
-
         }
 
 
@@ -79,24 +76,13 @@
             background-repeat:
                 no-repeat;
 
-            /*
-                Blur supaya gambar tidak terlalu
-                mengganggu tulisan
-            */
-
             filter:
                 blur(4px);
-
-            /*
-                Elak bahagian tepi putih
-                akibat blur
-            */
 
             transform:
                 scale(1.06);
 
             z-index: -5;
-
         }
 
 
@@ -186,17 +172,38 @@
                 );
 
             z-index: -4;
-
         }
+
+
+        /* =========================================
+           LOGO KANAN ATAS
+        ========================================= */
+
         .top-logo {
-    position: fixed;
-    top: -80px;
-    right: -80px;
-    width: 180x;
-    height: auto;
-    z-index: 10;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-}
+
+            position: fixed;
+
+            top: -45px;
+
+            right: -45px;
+
+            width: 120px;
+
+            height: auto;
+
+            z-index: 10;
+
+            filter:
+                drop-shadow(
+                    0 5px 15px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.5
+                    )
+                );
+        }
 
 
         /* =========================================
@@ -225,7 +232,6 @@
             pointer-events: none;
 
             z-index: -3;
-
         }
 
 
@@ -264,7 +270,6 @@
                         0.65
                     )
                 );
-
         }
 
 
@@ -276,7 +281,6 @@
 
             transform:
                 rotate(-35deg);
-
         }
 
 
@@ -288,7 +292,6 @@
 
             transform:
                 rotate(-35deg);
-
         }
 
 
@@ -314,7 +317,6 @@
 
             padding:
                 35px;
-
         }
 
 
@@ -402,12 +404,11 @@
 
             backdrop-filter:
                 blur(12px);
-
         }
 
 
         /* =========================================
-           LOGO
+           LOGO DALAM BADGE
         ========================================= */
 
         .badge-logo {
@@ -423,7 +424,6 @@
 
             object-fit:
                 contain;
-
         }
 
 
@@ -470,7 +470,6 @@
                     0,
                     0.70
                 );
-
         }
 
 
@@ -515,7 +514,6 @@
                     0,
                     0.55
                 );
-
         }
 
 
@@ -553,7 +551,6 @@
                     0,
                     0.75
                 );
-
         }
 
 
@@ -573,6 +570,7 @@
                 center;
 
             gap:
+
                 clamp(
                     12px,
                     1.8vw,
@@ -581,7 +579,6 @@
 
             margin-top:
                 38px;
-
         }
 
 
@@ -592,6 +589,7 @@
         .time-box {
 
             width:
+
                 clamp(
                     150px,
                     12vw,
@@ -599,6 +597,7 @@
                 );
 
             height:
+
                 clamp(
                     150px,
                     16vw,
@@ -672,11 +671,12 @@
 
             transition:
                 all 0.3s ease;
-
         }
 
 
-        /* Hover */
+        /* =========================================
+           HOVER
+        ========================================= */
 
         .time-box:hover {
 
@@ -703,7 +703,6 @@
                     0,
                     0.15
                 );
-
         }
 
 
@@ -739,7 +738,6 @@
                     0,
                     0.70
                 );
-
         }
 
 
@@ -781,7 +779,6 @@
                     0,
                     0.70
                 );
-
         }
 
 
@@ -826,7 +823,47 @@
                     0,
                     0.85
                 );
+        }
 
+
+        /* =========================================
+           SLOGAN BATCH
+        ========================================= */
+
+        .batch-slogan {
+
+            display:
+                inline-block;
+
+            margin-top:
+                8px;
+
+            font-size:
+
+                clamp(
+                    1.3rem,
+                    2.2vw,
+                    2.2rem
+                );
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                3px;
+
+            color:
+                #ffd700;
+
+            text-shadow:
+
+                0 3px 12px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.85
+                );
         }
 
 
@@ -840,7 +877,19 @@
 
                 padding:
                     20px;
+            }
 
+
+            .top-logo {
+
+                width:
+                    90px;
+
+                top:
+                    -30px;
+
+                right:
+                    -30px;
             }
 
 
@@ -851,7 +900,6 @@
 
                 min-height:
                     55px;
-
             }
 
 
@@ -862,7 +910,6 @@
 
                 margin-top:
                     25px;
-
             }
 
 
@@ -876,7 +923,6 @@
 
                 border-radius:
                     15px;
-
             }
 
 
@@ -884,7 +930,6 @@
 
                 font-size:
                     2.5rem;
-
             }
 
 
@@ -895,7 +940,6 @@
 
                 letter-spacing:
                     1px;
-
             }
 
 
@@ -903,7 +947,19 @@
 
                 margin-top:
                     22px;
+            }
 
+
+            .batch-slogan {
+
+                font-size:
+                    1.1rem;
+
+                letter-spacing:
+                    2px;
+
+                margin-top:
+                    6px;
             }
 
         }
@@ -917,7 +973,6 @@
 
             height:
                 100vh;
-
         }
 
     </style>
@@ -926,7 +981,12 @@
 
 
 <body>
-    <img src="logo.png" class="top-logo" alt="Logo">
+
+    <img
+        src="logo.png"
+        class="top-logo"
+        alt="Logo"
+    >
 
 
     <!-- =========================================
@@ -1103,7 +1163,9 @@
 
             <br>
 
-            "TOGETHER WE DOMINATE"
+            <span class="batch-slogan">
+                TOGETHER WE DOMINATE
+            </span>
 
         </div>
 
@@ -1247,7 +1309,7 @@
                     .innerText =
 
                     String(days)
-                    .padStart(2, '0');
+                        .padStart(2, '0');
 
 
                 document
@@ -1255,7 +1317,7 @@
                     .innerText =
 
                     String(hours)
-                    .padStart(2, '0');
+                        .padStart(2, '0');
 
 
                 document
@@ -1263,7 +1325,7 @@
                     .innerText =
 
                     String(minutes)
-                    .padStart(2, '0');
+                        .padStart(2, '0');
 
 
                 document
@@ -1271,7 +1333,7 @@
                     .innerText =
 
                     String(seconds)
-                    .padStart(2, '0');
+                        .padStart(2, '0');
 
             }
 
@@ -1318,9 +1380,20 @@
         ===================================== */
 
         updateCountdown();
-        setInterval(function() {
-        location.reload();
-    }, 60 * 60 * 1000);
+
+
+        /* =====================================
+           AUTO REFRESH SETIAP 1 JAM
+        ===================================== */
+
+        setInterval(
+            function() {
+
+                location.reload();
+
+            },
+            60 * 60 * 1000
+        );
 
 
     </script>
@@ -1329,3 +1402,7 @@
 </body>
 
 </html>
+```
+
+**Nota:** Saya juga betulkan `width: 180x` pada kod asal kepada `width: 120px`, sebab `180x` bukan unit CSS yang sah.
+

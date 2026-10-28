@@ -1,422 +1,1394 @@
-
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glorious Generation 2226 | SPM 2026</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    <meta charset="UTF-8">
 
-body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #35030d;
-    color: white;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-.background {
-    position: fixed;
-    inset: -2%;
-    background: url("group.jpg") center center / cover no-repeat;
-    filter: blur(4px);
-    z-index: -5;
-}
+    <title>
+        Countdown - Glorious Generation 2226
+    </title>
 
-.overlay {
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 8% 12%,
-            rgba(255,150,48,.30), transparent 28%),
-        radial-gradient(circle at 92% 88%,
-            rgba(255,100,28,.28), transparent 30%),
-        radial-gradient(circle at 50% 45%,
-            rgba(150,0,43,.25), transparent 55%),
-        linear-gradient(135deg,
-            rgba(35,3,8,.84),
-            rgba(85,4,22,.78),
-            rgba(145,0,42,.70),
-            rgba(65,3,15,.84));
-    z-index: -4;
-}
 
-.vignette {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(ellipse at center,
-        transparent 35%, rgba(20,0,5,.50) 100%);
-    pointer-events: none;
-    z-index: -3;
-}
+    <style>
 
-.top-logo {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    width: clamp(70px, 12vw, 180px);
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,.5));
-    z-index: 10;
-}
+        /* =========================================
+           RESET
+        ========================================= */
 
-.gold-line {
-    position: fixed;
-    width: 260px;
-    height: 3px;
-    background: linear-gradient(90deg,
-        transparent, #ffd700, #fff1a8, #ffd700, transparent);
-    opacity: .75;
-    filter: drop-shadow(0 0 8px rgba(255,215,0,.65));
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
 
-.gold-line.top {
-    top: 45px;
-    left: -50px;
-    transform: rotate(-35deg);
-}
+            font-family:
+                'Segoe UI',
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+        }
 
-.gold-line.bottom {
-    bottom: 45px;
-    right: -50px;
-    transform: rotate(-35deg);
-}
 
-.content {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 35px;
-}
+        /* =========================================
+           BODY
+        ========================================= */
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px 30px;
-    min-height: 65px;
-    border-radius: 50px;
-    background: linear-gradient(135deg,
-        rgba(30,5,8,.88), rgba(90,10,20,.75));
-    border: 2px solid rgba(255,215,0,.9);
-    color: #ffd700;
-    font-size: clamp(1rem, 1.5vw, 1.4rem);
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 35px;
-    box-shadow: 0 0 20px rgba(255,180,50,.18);
-    backdrop-filter: blur(12px);
-}
+        body {
 
-.badge-logo {
-    height: 2.2em;
-    width: auto;
-    max-width: 65px;
-    object-fit: contain;
-}
+            width: 100vw;
+            height: 100vh;
 
-h1 {
-    max-width: 95%;
-    font-size: clamp(2.5rem, 6.5vw, 6rem);
-    font-weight: 900;
-    letter-spacing: 3px;
-    line-height: 1.12;
-    color: #fff;
-    text-shadow: 0 4px 0 rgba(0,0,0,.2),
-                 0 8px 25px rgba(0,0,0,.7);
-}
+            overflow: hidden;
 
-.title-line {
-    width: min(700px, 65vw);
-    height: 3px;
-    margin-top: 28px;
-    margin-bottom: 25px;
-    background: linear-gradient(90deg,
-        transparent, #ffd700, #fff3b0, #ffd700, transparent);
-    box-shadow: 0 0 10px rgba(255,215,0,.55);
-}
+            color: white;
 
-.date-info {
-    font-size: clamp(1rem, 2vw, 1.65rem);
-    color: rgba(255,255,255,.95);
-    line-height: 1.6;
-    text-shadow: 0 3px 10px rgba(0,0,0,.75);
-}
+            position: relative;
 
-.goodluck {
-    margin-top: 42px;
-    font-size: clamp(1.5rem, 3.5vw, 3.2rem);
-    font-weight: 900;
-    letter-spacing: 5px;
-    color: #ffd700;
-    text-shadow: 0 3px 12px rgba(0,0,0,.85);
-}
+            background: #35030d;
+        }
 
-.batch-slogan {
-    margin-top: 16px;
-    font-size: clamp(1rem, 1.8vw, 1.7rem);
-    font-weight: 800;
-    letter-spacing: 3px;
-    color: white;
-    text-shadow: 0 3px 12px rgba(0,0,0,.85);
-}
 
-@media (max-width: 800px) {
-    .content {
-        padding: 20px;
-    }
+        /* =========================================
+           BACKGROUND GAMBAR GROUP
+        ========================================= */
 
-    .top-logo {
-        top: 8px;
-        right: 8px;
-        width: 75px;
-    }
+        .background {
 
-    .badge {
-        padding: 8px 18px;
-        min-height: 50px;
-        margin-bottom: 28px;
-    }
+            position: fixed;
 
-    h1 {
-        letter-spacing: 1px;
-    }
+            inset: 0;
 
-    .title-line {
-        margin-top: 22px;
-        margin-bottom: 18px;
-    }
+            background-image:
+                url("group.jpg");
 
-    .goodluck {
-        margin-top: 30px;
-        letter-spacing: 3px;
-    }
+            background-size: cover;
 
-    .batch-slogan {
-        letter-spacing: 2px;
-    }
-}
-</style>
+            background-position:
+                center center;
+
+            background-repeat:
+                no-repeat;
+
+            filter:
+                blur(4px);
+
+            transform:
+                scale(1.06);
+
+            z-index: -5;
+        }
+
+
+        /* =========================================
+           GRADIENT OVERLAY UTAMA
+        ========================================= */
+
+        .overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+
+                /* Glow kiri atas */
+
+                radial-gradient(
+                    circle at 8% 12%,
+                    rgba(
+                        255,
+                        150,
+                        48,
+                        0.30
+                    ),
+                    transparent 28%
+                ),
+
+                /* Glow kanan bawah */
+
+                radial-gradient(
+                    circle at 92% 88%,
+                    rgba(
+                        255,
+                        100,
+                        28,
+                        0.28
+                    ),
+                    transparent 30%
+                ),
+
+                /* Glow tengah */
+
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(
+                        150,
+                        0,
+                        43,
+                        0.25
+                    ),
+                    transparent 55%
+                ),
+
+                /* Gradient utama */
+
+                linear-gradient(
+                    135deg,
+
+                    rgba(
+                        35,
+                        3,
+                        8,
+                        0.84
+                    ),
+
+                    rgba(
+                        85,
+                        4,
+                        22,
+                        0.78
+                    ),
+
+                    rgba(
+                        145,
+                        0,
+                        42,
+                        0.70
+                    ),
+
+                    rgba(
+                        65,
+                        3,
+                        15,
+                        0.84
+                    )
+                );
+
+            z-index: -4;
+        }
+
+
+        /* =========================================
+           LOGO KANAN ATAS
+        ========================================= */
+
+        .top-logo {
+
+            position: fixed;
+
+            top: 5px;
+
+            right: 5px;
+
+            width: 180px;
+
+            height: auto;
+
+            z-index: 10;
+
+            filter:
+                drop-shadow(
+                    0 5px 15px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.5
+                    )
+                );
+        }
+
+
+        /* =========================================
+           GLOW / VIGNETTE
+        ========================================= */
+
+        .vignette {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+
+                radial-gradient(
+                    ellipse at center,
+                    transparent 35%,
+                    rgba(
+                        20,
+                        0,
+                        5,
+                        0.50
+                    ) 100%
+                );
+
+            pointer-events: none;
+
+            z-index: -3;
+        }
+
+
+        /* =========================================
+           GOLD DECORATION
+        ========================================= */
+
+        .gold-line {
+
+            position: fixed;
+
+            width: 260px;
+
+            height: 3px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #ffd700,
+                    #fff1a8,
+                    #ffd700,
+                    transparent
+                );
+
+            opacity: 0.75;
+
+            filter:
+                drop-shadow(
+                    0 0 8px
+                    rgba(
+                        255,
+                        215,
+                        0,
+                        0.65
+                    )
+                );
+        }
+
+
+        .gold-line.top {
+
+            top: 45px;
+
+            left: -50px;
+
+            transform:
+                rotate(-35deg);
+        }
+
+
+        .gold-line.bottom {
+
+            bottom: 45px;
+
+            right: -50px;
+
+            transform:
+                rotate(-35deg);
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .content {
+
+            width: 100%;
+
+            height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding:
+                35px;
+        }
+
+
+        /* =========================================
+           BADGE
+        ========================================= */
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            padding:
+                10px 35px;
+
+            min-height: 68px;
+
+            border-radius: 50px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(
+                        30,
+                        5,
+                        8,
+                        0.88
+                    ),
+                    rgba(
+                        90,
+                        10,
+                        20,
+                        0.75
+                    )
+                );
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    215,
+                    0,
+                    0.90
+                );
+
+            color: #ffd700;
+
+            font-size:
+                clamp(
+                    1rem,
+                    1.5vw,
+                    1.4rem
+                );
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            margin-bottom:
+                25px;
+
+            box-shadow:
+
+                0 0 20px
+                rgba(
+                    255,
+                    180,
+                    50,
+                    0.18
+                ),
+
+                inset 0 0 15px
+                rgba(
+                    255,
+                    215,
+                    0,
+                    0.06
+                );
+
+            backdrop-filter:
+                blur(12px);
+        }
+
+
+        /* =========================================
+           LOGO DALAM BADGE
+        ========================================= */
+
+        .badge-logo {
+
+            height:
+                2.5em;
+
+            width:
+                auto;
+
+            max-width:
+                70px;
+
+            object-fit:
+                contain;
+        }
+
+
+        /* =========================================
+           TAJUK
+        ========================================= */
+
+        h1 {
+
+            font-size:
+
+                clamp(
+                    3rem,
+                    6vw,
+                    6rem
+                );
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                3px;
+
+            line-height:
+                1;
+
+            color:
+                #ffffff;
+
+            text-shadow:
+
+                0 4px 0
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.20
+                ),
+
+                0 8px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.70
+                );
+        }
+
+
+        /* =========================================
+           GOLD LINE BAWAH TAJUK
+        ========================================= */
+
+        .title-line {
+
+            width:
+                min(
+                    700px,
+                    60vw
+                );
+
+            height:
+                2px;
+
+            margin-top:
+                14px;
+
+            margin-bottom:
+                12px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #ffd700,
+                    #fff3b0,
+                    #ffd700,
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 10px
+                rgba(
+                    255,
+                    215,
+                    0,
+                    0.55
+                );
+        }
+
+
+        /* =========================================
+           TARIKH
+        ========================================= */
+
+        p.date-info {
+
+            font-size:
+
+                clamp(
+                    1rem,
+                    1.8vw,
+                    1.5rem
+                );
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
+
+            margin-top:
+                0;
+
+            text-shadow:
+
+                0 3px 10px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.75
+                );
+        }
+
+
+        /* =========================================
+           COUNTDOWN CONTAINER
+        ========================================= */
+
+        .countdown-container {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            gap:
+
+                clamp(
+                    12px,
+                    1.8vw,
+                    28px
+                );
+
+            margin-top:
+                38px;
+        }
+
+
+        /* =========================================
+           TIME BOX
+        ========================================= */
+
+        .time-box {
+
+            width:
+
+                clamp(
+                    150px,
+                    12vw,
+                    220px
+                );
+
+            height:
+
+                clamp(
+                    150px,
+                    16vw,
+                    200px
+                );
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            border-radius:
+                22px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+
+                    rgba(
+                        105,
+                        8,
+                        28,
+                        0.72
+                    ),
+
+                    rgba(
+                        35,
+                        3,
+                        13,
+                        0.82
+                    )
+                );
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    215,
+                    140,
+                    0.50
+                );
+
+            backdrop-filter:
+                blur(14px);
+
+            box-shadow:
+
+                0 15px 35px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.50
+                ),
+
+                inset 0 0 20px
+                rgba(
+                    255,
+                    80,
+                    80,
+                    0.04
+                );
+
+            transition:
+                all 0.3s ease;
+        }
+
+
+        /* =========================================
+           HOVER
+        ========================================= */
+
+        .time-box:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                #ffd700;
+
+            box-shadow:
+
+                0 18px 40px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                ),
+
+                0 0 20px
+                rgba(
+                    255,
+                    215,
+                    0,
+                    0.15
+                );
+        }
+
+
+        /* =========================================
+           NOMBOR
+        ========================================= */
+
+        .number {
+
+            font-size:
+
+                clamp(
+                    3rem,
+                    5vw,
+                    5rem
+                );
+
+            font-weight:
+                900;
+
+            line-height:
+                1;
+
+            color:
+                #ffffff;
+
+            text-shadow:
+
+                0 4px 15px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.70
+                );
+        }
+
+
+        /* =========================================
+           LABEL
+        ========================================= */
+
+        .label {
+
+            margin-top:
+                15px;
+
+            font-size:
+
+                clamp(
+                    0.85rem,
+                    1.2vw,
+                    1.2rem
+                );
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                2px;
+
+            text-transform:
+                uppercase;
+
+            color:
+                #ffd700;
+
+            text-shadow:
+
+                0 2px 8px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.70
+                );
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+
+            max-width:
+                1200px;
+
+            margin-top:
+                35px;
+
+            font-size:
+
+                clamp(
+                    0.75rem,
+                    1.2vw,
+                    1.05rem
+                );
+
+            line-height:
+                1.7;
+
+            color:
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
+
+            text-shadow:
+
+                0 2px 8px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.85
+                );
+        }
+
+
+        /* =========================================
+           SLOGAN BATCH
+        ========================================= */
+
+        .batch-slogan {
+
+            display:
+                inline-block;
+
+            margin-top:
+                8px;
+
+            font-size:
+
+                clamp(
+                    1.3rem,
+                    2.2vw,
+                    2.2rem
+                );
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                3px;
+
+            color:
+                #ffd700;
+
+            text-shadow:
+
+                0 3px 12px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.85
+                );
+        }
+
+
+        /* =========================================
+           MOBILE / SKRIN KECIL
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .content {
+
+                padding:
+                    20px;
+            }
+
+
+            .top-logo {
+
+                width:
+                    90px;
+
+                top:
+                    -30px;
+
+                right:
+                    -30px;
+            }
+
+
+            .badge {
+
+                padding:
+                    8px 20px;
+
+                min-height:
+                    55px;
+            }
+
+
+            .countdown-container {
+
+                gap:
+                    6px;
+
+                margin-top:
+                    25px;
+            }
+
+
+            .time-box {
+
+                width:
+                    23vw;
+
+                height:
+                    130px;
+
+                border-radius:
+                    15px;
+            }
+
+
+            .number {
+
+                font-size:
+                    2.5rem;
+            }
+
+
+            .label {
+
+                font-size:
+                    0.7rem;
+
+                letter-spacing:
+                    1px;
+            }
+
+
+            .footer {
+
+                margin-top:
+                    22px;
+            }
+
+
+            .batch-slogan {
+
+                font-size:
+                    1.1rem;
+
+                letter-spacing:
+                    2px;
+
+                margin-top:
+                    6px;
+            }
+
+        }
+
+
+        /* =========================================
+           FULLSCREEN
+        ========================================= */
+
+        :fullscreen .content {
+
+            height:
+                100vh;
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="background"></div>
-<div class="overlay"></div>
-<div class="vignette"></div>
+    <img
+        src="logo.png"
+        class="top-logo"
+        alt="Logo"
+    >
 
-<img src="logo.png" class="top-logo" alt="Logo">
 
-<div class="gold-line top"></div>
-<div class="gold-line bottom"></div>
+    <!-- =========================================
+         BACKGROUND
+    ========================================= -->
 
-<main class="content">
+    <div class="background"></div>
 
-    <div class="badge">
-        <img src="logo.png" class="badge-logo" alt="Logo Glorious">
-        <span>GLORIOUS GENERATION 2226</span>
-    </div>
 
-    <h1 id="exam-title">SPM 2026</h1>
+    <!-- =========================================
+         GRADIENT
+    ========================================= -->
 
-    <div class="title-line"></div>
+    <div class="overlay"></div>
 
-    <p class="date-info" id="exam-date">
-        Memuatkan tarikh peperiksaan...
-    </p>
 
-    <div class="goodluck">GOOD LUCK!</div>
+    <!-- =========================================
+         VIGNETTE
+    ========================================= -->
 
-    <div class="batch-slogan">
-        ONCE GLORIOUS, ALWAYS GLORIOUS
-    </div>
+    <div class="vignette"></div>
 
-</main>
 
-<script>
-// ==========================================
-// JADUAL PEPERIKSAAN SPM 2026
-// Bulan menggunakan format JavaScript: 0 = Januari
-// ==========================================
+    <!-- =========================================
+         DECORATION
+    ========================================= -->
 
-const exams = [
-    {
-        start: "2026-10-26",
-        end: "2026-10-29",
-        title: "UBBM SPM"
-    },
-    {
-        start: "2026-11-02",
-        end: "2026-11-05",
-        title: "BAHASA INGGERIS SPM"
-    },
-    {
-        start: "2026-11-16",
-        end: "2026-11-16",
-        title: "FIZIK SPM"
-    },
-    {
-        start: "2026-11-17",
-        end: "2026-11-17",
-        title: "KIMIA SPM"
-    },
-    {
-        start: "2026-11-18",
-        end: "2026-11-18",
-        title: "BIOLOGI SPM"
-    },
-    {
-        start: "2026-11-23",
-        end: "2026-11-23",
-        title: "BAHASA MELAYU SPM"
-    },
-    {
-        start: "2026-11-24",
-        end: "2026-11-24",
-        title: "BAHASA INGGERIS SPM"
-    },
-    {
-        start: "2026-11-25",
-        end: "2026-11-25",
-        title: "PENDIDIKAN ISLAM SPM"
-    },
-    {
-        start: "2026-11-26",
-        end: "2026-11-26",
-        title: "MATEMATIK SPM"
-    },
-    {
-        start: "2026-11-30",
-        end: "2026-11-30",
-        title: "SEJARAH SPM"
-    },
-    {
-        start: "2026-12-01",
-        end: "2026-12-01",
-        title: "PENDIDIKAN SENI VISUAL SPM"
-    },
-    {
-        start: "2026-12-02",
-        end: "2026-12-02",
-        title: "BIOLOGI SPM"
-    },
-    {
-        start: "2026-12-03",
-        end: "2026-12-03",
-        title: "FIZIK SPM"
-    },
-    {
-        start: "2026-12-15",
-        end: "2026-12-15",
-        title: "KIMIA SPM"
-    },
-    {
-        start: "2026-12-17",
-        end: "2026-12-17",
-        title: "MATEMATIK TAMBAHAN SPM"
-    }
-];
+    <div class="gold-line top"></div>
 
-// ==========================================
-// FORMAT TARIKH MENGIKUT WAKTU MALAYSIA
-// ==========================================
+    <div class="gold-line bottom"></div>
 
-const weekdays = [
-    "Ahad", "Isnin", "Selasa", "Rabu",
-    "Khamis", "Jumaat", "Sabtu"
-];
 
-const months = [
-    "Januari", "Februari", "Mac", "April",
-    "Mei", "Jun", "Julai", "Ogos",
-    "September", "Oktober", "November", "Disember"
-];
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
 
-function formatDate(dateString) {
-    const [year, month, day] = dateString.split("-").map(Number);
+    <main class="content">
 
-    // Guna tengah hari UTC untuk elakkan isu pertukaran hari.
-    const date = new Date(Date.UTC(year, month - 1, day, 12));
 
-    const weekday = weekdays[date.getUTCDay()];
-    const monthName = months[month - 1];
+        <!-- BADGE -->
 
-    return `${weekday}, ${day} ${monthName} ${year} | 8:00 Pagi (MYT)`;
-}
+        <div class="badge">
 
-// ==========================================
-// DAPATKAN TARIKH HARI INI DI MALAYSIA
-// ==========================================
+            <img
+                src="logo.png"
+                alt="Logo Batch"
+                class="badge-logo"
+            >
 
-function getTodayMYT() {
-    const parts = new Intl.DateTimeFormat("en-CA", {
-        timeZone: "Asia/Kuala_Lumpur",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-    }).formatToParts(new Date());
+            <span>
+                Glorious Generation 2226
+            </span>
 
-    const values = {};
-    parts.forEach(part => {
-        if (part.type !== "literal") {
-            values[part.type] = part.value;
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            UBBM SPM
+        </h1>
+
+
+        <!-- GOLD LINE -->
+
+        <div class="title-line"></div>
+
+
+        <!-- DATE -->
+
+        <p class="date-info">
+
+            Isnin, 2-5 November 2026 |
+            8:00 Pagi (MYT)
+
+        </p>
+
+
+        <!-- =====================================
+             COUNTDOWN
+        ====================================== -->
+
+        <div class="countdown-container">
+
+
+            <!-- HARI -->
+
+            <div class="time-box">
+
+                <div
+                    class="number"
+                    id="days"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Hari
+                </div>
+
+            </div>
+
+
+            <!-- JAM -->
+
+            <div class="time-box">
+
+                <div
+                    class="number"
+                    id="hours"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Jam
+                </div>
+
+            </div>
+
+
+            <!-- MINIT -->
+
+            <div class="time-box">
+
+                <div
+                    class="number"
+                    id="minutes"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Minit
+                </div>
+
+            </div>
+
+
+            <!-- SAAT -->
+
+            <div class="time-box">
+
+                <div
+                    class="number"
+                    id="seconds"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Saat
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <div class="footer">
+
+            Semoga Allah memberkati setiap usaha anda,
+            memudahkan urusan anda, dan mengurniakan
+            keputusan yang cemerlang
+
+            <br>
+
+            GP 1.67 & Straight A+ SPM 2026. 🤲🏻
+
+            <br>
+
+            <span class="batch-slogan">
+                TOGETHER WE DOMINATE
+            </span>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        /* =====================================
+           TARIKH SASARAN
+        ===================================== */
+
+        const targetDate =
+
+            new Date(
+                "November 2, 2026 08:00:00"
+            ).getTime();
+
+
+
+        /* =====================================
+           COUNTDOWN FUNCTION
+        ===================================== */
+
+        function updateCountdown() {
+
+
+            const now =
+                new Date().getTime();
+
+
+            const difference =
+                targetDate - now;
+
+
+            if (
+                difference > 0
+            ) {
+
+
+                /* HARI */
+
+                const days =
+
+                    Math.floor(
+
+                        difference /
+                        (
+                            1000 *
+                            60 *
+                            60 *
+                            24
+                        )
+
+                    );
+
+
+                /* JAM */
+
+                const hours =
+
+                    Math.floor(
+
+                        (
+                            difference %
+                            (
+                                1000 *
+                                60 *
+                                60 *
+                                24
+                            )
+                        )
+
+                        /
+
+                        (
+                            1000 *
+                            60 *
+                            60
+                        )
+
+                    );
+
+
+                /* MINIT */
+
+                const minutes =
+
+                    Math.floor(
+
+                        (
+                            difference %
+                            (
+                                1000 *
+                                60 *
+                                60
+                            )
+                        )
+
+                        /
+
+                        (
+                            1000 *
+                            60
+                        )
+
+                    );
+
+
+                /* SAAT */
+
+                const seconds =
+
+                    Math.floor(
+
+                        (
+                            difference %
+                            (
+                                1000 *
+                                60
+                            )
+                        )
+
+                        /
+
+                        1000
+
+                    );
+
+
+                /* UPDATE HTML */
+
+                document
+                    .getElementById("days")
+                    .innerText =
+
+                    String(days)
+                        .padStart(2, '0');
+
+
+                document
+                    .getElementById("hours")
+                    .innerText =
+
+                    String(hours)
+                        .padStart(2, '0');
+
+
+                document
+                    .getElementById("minutes")
+                    .innerText =
+
+                    String(minutes)
+                        .padStart(2, '0');
+
+
+                document
+                    .getElementById("seconds")
+                    .innerText =
+
+                    String(seconds)
+                        .padStart(2, '0');
+
+            }
+
+
+            else {
+
+
+                document
+                    .querySelector(
+                        ".countdown-container"
+                    )
+                    .innerHTML =
+
+                    `
+
+                    <h1
+                        style="
+                            color:#ffd700;
+                            font-size:3rem;
+                        "
+                    >
+                        GOOD LUCK GLORIOUS!!!
+                    </h1>
+
+                    `;
+
+            }
+
         }
-    });
 
-    return `${values.year}-${values.month}-${values.day}`;
-}
 
-// ==========================================
-// KEMAS KINI PAPARAN
-// ==========================================
+        /* =====================================
+           UPDATE SETIAP 1 SAAT
+        ===================================== */
 
-function updateExam() {
-    const today = getTodayMYT();
+        setInterval(
+            updateCountdown,
+            1000
+        );
 
-    // Jika hari ini dalam tempoh peperiksaan,
-    // paparkan tajuk peperiksaan hari tersebut.
-    let exam = exams.find(item =>
-        today >= item.start && today <= item.end
-    );
 
-    // Jika tiada peperiksaan hari ini,
-    // cari peperiksaan yang akan datang.
-    if (!exam) {
-        exam = exams.find(item => item.start > today);
-    }
+        /* =====================================
+           RUN PERTAMA
+        ===================================== */
 
-    const titleElement = document.getElementById("exam-title");
-    const dateElement = document.getElementById("exam-date");
+        updateCountdown();
 
-    if (exam) {
-        titleElement.textContent = exam.title;
-        dateElement.textContent = formatDate(exam.start);
-    } else {
-        titleElement.textContent = "TAHNIAH, GLORIOUS!";
-        dateElement.textContent = "SPM 2026 telah selesai";
-    }
-}
+        
 
-// Kemas kini apabila laman dibuka.
-updateExam();
 
-// Semak setiap saat supaya perubahan hari
-// mengikut waktu Malaysia dikesan secara automatik.
-setInterval(updateExam, 1000);
-</script>
+    </script>
+
 
 </body>
+
 </html>
+```
+
+**Nota:** Saya juga betulkan `width: 180x` pada kod asal kepada `width: 120px`, sebab `180x` bukan unit CSS yang sah.

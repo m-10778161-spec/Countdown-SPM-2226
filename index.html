@@ -49,7 +49,7 @@
 
         .content {
             width: 100%; height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 35px;
+            justify-content: center; align-items: center; text-align: center; padding: 35px 35px 50px;
         }
 
         .badge {
@@ -142,6 +142,13 @@
         }
 
         :fullscreen .content { height: 100vh; }
+
+        .clock {
+            position: fixed; bottom: 3px; left: 0; right: 0; text-align: center;
+            font-size: 0.65rem; letter-spacing: 1px; color: rgba(255,255,255,0.40);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.85); pointer-events: none; z-index: 10;
+            font-variant-numeric: tabular-nums;
+        }
     </style>
 </head>
 
@@ -187,6 +194,8 @@
 
     </main>
 
+    <div class="clock" id="clock"></div>
+
     <script>
 
         /* =====================================
@@ -205,9 +214,9 @@
             { date: "2026-11-04", time: "07:50", title: "UBBI SPM DAY 3",                  day: "Rabu",   dateText: "4 November 2026",  timeText: "7:50 Pagi" },
             { date: "2026-11-05", time: "07:50", title: "UBBI SPM DAY 4",                  day: "Khamis", dateText: "5 November 2026",  timeText: "7:50 Pagi" },
 
-            { date: "2026-11-16", time: "08:00", title: "AMALI FZIK SPM",           day: "Isnin",  dateText: "16 November 2026", timeText: "8:00 Pagi" },
+            { date: "2026-11-16", time: "08:00", title: "AMALI FIZIK SPM",           day: "Isnin",  dateText: "16 November 2026", timeText: "8:00 Pagi" },
             { date: "2026-11-17", time: "08:00", title: "AMALI KIMIA SPM",           day: "Selasa", dateText: "17 November 2026", timeText: "8:00 Pagi" },
-            { date: "2026-11-18", time: "08:00", title: "AMALI BIOLOGIBSPM",         day: "Rabu",   dateText: "18 November 2026", timeText: "8:00 Pagi" },
+            { date: "2026-11-18", time: "08:00", title: "AMALI BIOLOGI SPM",         day: "Rabu",   dateText: "18 November 2026", timeText: "8:00 Pagi" },
 
             { date: "2026-11-23", time: "09:00", title: "BAHASA MELAYU SPM",         day: "Isnin",  dateText: "23 November 2026", timeText: "9:00 Pagi" },
             { date: "2026-11-24", time: "09:00", title: "BAHASA INGGERIS SPM",       day: "Selasa", dateText: "24 November 2026", timeText: "9:00 Pagi" },
@@ -222,16 +231,42 @@
         ];
 
 
-        /* Tarikh hari ini ikut waktu Malaysia (UTC+8) — reset tepat 12 malam MYT */
-        function todayMYT() {
-            const myt = new Date(Date.now() + 8 * 60 * 60 * 1000);
-            return myt.toISOString().slice(0, 10);
+        /* Masa TAMAT kertas terakhir setiap hari (HH:MM, waktu Malaysia).
+           Lepas masa ni, paparan auto tukar ke countdown kertas seterusnya. */
+        const endTimes = {
+            "2026-11-02": "16:45",
+            "2026-11-03": "16:45",
+            "2026-11-04": "16:45",
+            "2026-11-05": "16:45",
+            "2026-11-16": "11:45",
+            "2026-11-17": "11:45",
+            "2026-11-18": "11:45",
+            "2026-11-23": "17:00",
+            "2026-11-24": "16:00",
+            "2026-11-25": "10:45",
+            "2026-11-26": "13:15",
+            "2026-11-30": "13:00",
+            "2026-12-01": "13:00",
+            "2026-12-02": "13:15",
+            "2026-12-03": "13:00",
+            "2026-12-15": "13:15",
+            "2026-12-17": "17:00"
+        };
+
+        /* Cari kertas seterusnya: yang masa tamatnya belum lepas */
+        function currentEvent() {
+            const now = Date.now();
+            return schedule.find(e =>
+                new Date(e.date + "T" + endTimes[e.date] + ":00+08:00").getTime() > now
+            ) || null;
         }
 
-        /* Cari kertas seterusnya: tarikh hari ini atau selepas */
-        function currentEvent() {
-            const today = todayMYT();
-            return schedule.find(e => e.date >= today) || null;
+        /* Jam kecil di bawah (waktu Malaysia) */
+        function updateClock() {
+            const t = new Date().toLocaleTimeString("en-GB", {
+                timeZone: "Asia/Kuala_Lumpur", hour12: false
+            });
+            document.getElementById("clock").innerText = "Masa sekarang: " + t + " (MYT)";
         }
 
         let shownDate = null;
@@ -246,6 +281,8 @@
         function pad(n) { return String(n).padStart(2, "0"); }
 
         function updateCountdown() {
+
+            updateClock();
 
             const event = currentEvent();
             const box = document.getElementById("countdown");
@@ -281,7 +318,7 @@
                 document.getElementById("seconds").innerText = pad(s);
             }
             else {
-                /* Kertas dah mula — kekal sampai 12 malam, lepas tu auto tukar subjek seterusnya */
+                /* Kertas sedang berlangsung — kekal sampai masa tamat, lepas tu auto tukar subjek seterusnya */
                 box.style.display = "none";
                 goodluck.style.display = "block";
                 goodluck.innerText = "GOOD LUCK GLORIOUS!!!";

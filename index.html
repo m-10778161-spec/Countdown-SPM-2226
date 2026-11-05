@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+h<!DOCTYPE html>
 <html lang="ms">
 
 <head>
@@ -255,6 +255,7 @@
 
         /* Cari kertas seterusnya: yang masa tamatnya belum lepas */
         function currentEvent() {
+            return null;
             const now = Date.now();
             return schedule.find(e =>
                 new Date(e.date + "T" + endTimes[e.date] + ":00+08:00").getTime() > now
